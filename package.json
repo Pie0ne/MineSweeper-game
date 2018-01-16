@@ -4,7 +4,11 @@
   "description": "Package for building minesweeper game",
   "main": "\u001b[B\u001b[B\u001b[B\u001b[B\u001b[D\u001b[D\u001b[D\u001b\u001b[C\u001b[C\u001b[C\u001b[Cmain.js)",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel js -d lib"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
   },
   "repository": {
     "type": "git",
