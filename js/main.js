@@ -66,7 +66,18 @@ const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
     return numberOfBombs;
 };
 
-
+const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
+    if (playerBoard[rowIndex][columnIndex] !== '') {
+        return 'This title has already been flipped!';
+    }
+    else if (bombBoard[rowIndex][columnIndex] === 'B') {
+        return playerBoard[rowIndex][columnIndex];
+    }
+    else {
+        playerBoard[rowIndex][columnIndex] = getNumberOfNeighborBombs(bombBoard, 
+        rowIndex, columnIndex);
+    }
+};
 
 
 
