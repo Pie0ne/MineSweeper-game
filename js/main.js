@@ -1,7 +1,9 @@
 const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
     let board = [];
+    
     for (let rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
         let row = [];
+        
         for (let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
             row.push(' ');
         }
@@ -12,6 +14,7 @@ const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
 
 const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
     let board = [];
+    
     for (let rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
         let row = [];
         for (let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
@@ -20,16 +23,60 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
         board.push(row);
     }
     let numberOfBombsPlaced = 0;
+    
     while(numberOfBombsPlaced < numberOfBombs) {
         let randomRowIndex = Math.floor(Math.random() * numberOfRows);
         let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
         
-        board[randomRowIndex][randomColumnIndex] = 'B';
-        
-        numberOfBombsPlaced++;
+        if (board.randomRowIndex !== 'B' && board.randomColumnIndex !== 'B') {
+            board[randomRowIndex][randomColumnIndex] = 'B';
+            numberOfBombsPlaced++;
+        }
     }
     return board;  
 };
+
+const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
+    let neighborOffsets = [
+        [-1, 1], 
+        [-1, 0], 
+        [-1, 1], 
+        [0, -1], 
+        [0, 1], 
+        [1, -1], 
+        [1, 0], 
+        [1,1]
+    ];
+    
+    let numberOfRows = bombBoard.length;
+    let numberOfColumns = bombBoard[0].length;
+    let numberOfBombs = 0;
+    
+    neighborOffsets.forEach(offset => {
+        let neighborRowIndex = rowIndex + offset[0];
+        let neighborColumnIndex = columnIndex + offset[1];
+        
+        if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && 
+            neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns) {
+            if (bombBoard[neighborRowIndex[neighborColumnIndex] === 'B']) {
+                numberOfBombs++;
+            }
+        }
+    });
+    return numberOfBombs;
+};
+
+
+
+
+
+
+
+
+
+
+
+
 
 const printBoard = board => {
     console.log(board.map(row => row.join(' | ')).join('\n')); 
