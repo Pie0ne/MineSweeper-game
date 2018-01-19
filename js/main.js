@@ -9,31 +9,15 @@ class Game {
             console.log('The game is over');
             this._board.print();
         }
-        else if (this._board.hasSafeTiles()) {
+        else if (!this._board.hasSafeTiles()) {
             console.log('You won! Congratulations!')
         }
         else {
             console.log('Current Board: ');
-            this._board.print(board);
+            this._board.print();
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Board {
     constructor(numberOfRows, numberOfColumns, numberOfBombs) {
@@ -51,7 +35,7 @@ class Board {
         if (this._playerBoard[rowIndex][columnIndex] !== ' ') {
             return 'This title has already been flipped!';
         }
-        else if (this._bombBoard[rowIndex][columnIndex] === 'B') {
+        else if (this._bombBoard[rowIndex][columnIndex] === 'B') {   
             this._playerBoard[rowIndex][columnIndex] = 'B';
         }
         else {
@@ -89,15 +73,15 @@ class Board {
         });
         return numberOfBombs;
     };
-    //Do I  have to put parameters? 
+    
     hasSafeTiles () {
         return this._numberOfTiles !== this._numberOfBombs;           
     };
     
     print (board) {
-        console.log(board.map(row => row.join(' | ')).join('\n')); 
+        console.log(this._playerBoard.map(row => row.join(' | ')).join('\n')); 
     };
-    
+     
     static generatePlayerBoard (numberOfRows, numberOfColumns)  {
         let board = [];
 
@@ -138,9 +122,9 @@ class Board {
 };
 
  
-/*
-const playerBoard = generatePlayerBoard(3,4);  
-const bombBoard = generateBombBoard(3,4,5); */
+const g = new Game (3,3,3);
+
+g.playMove(0,0);    
 
 
 
