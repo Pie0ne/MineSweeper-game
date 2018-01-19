@@ -24,35 +24,34 @@ class Board {
     }
     
     getNumberOfNeighborBombs (rowIndex, columnIndex) {
-    let neighborOffsets = [
-        [-1, 1], 
-        [-1, 0], 
-        [-1, 1], 
-        [0, -1], 
-        [0, 1], 
-        [1, -1], 
-        [1, 0], 
-        [1,1]
-    ];
-    
-    let numberOfRows = this._bombBoard.length;
-    let numberOfColumns = this._bombBoard[0].length;
-    let numberOfBombs = 0;
-    
-    neighborOffsets.forEach(offset => {
-        let neighborRowIndex = rowIndex + offset[0];
-        let neighborColumnIndex = columnIndex + offset[1];
-        
-        if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && 
-            neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns) {
-            if (this._bombBoard[neighborRowIndex][neighborColumnIndex] === 'B') {
-                numberOfBombs++;
-            }
-        }
-    });
-    return numberOfBombs;
-};
+        let neighborOffsets = [
+            [-1, 1], 
+            [-1, 0], 
+            [-1, 1], 
+            [0, -1], 
+            [0, 1], 
+            [1, -1], 
+            [1, 0], 
+            [1,1]
+        ];
 
+        let numberOfRows = this._bombBoard.length;
+        let numberOfColumns = this._bombBoard[0].length;
+        let numberOfBombs = 0;
+
+        neighborOffsets.forEach(offset => {
+            let neighborRowIndex = rowIndex + offset[0];
+            let neighborColumnIndex = columnIndex + offset[1];
+
+            if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && 
+                neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns) {
+                if (this._bombBoard[neighborRowIndex][neighborColumnIndex] === 'B') {
+                    numberOfBombs++;
+                }
+            }
+        });
+        return numberOfBombs;
+    };
 };
 
 
