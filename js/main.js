@@ -1,3 +1,29 @@
+class Board {
+    constructor(numberOfRows, numberOfColumns, numberOfBombs) {
+    this._numberOfBombs = numberOfBombs;
+    this._numberOfTiles = numberOfRows * numberOfColumns;
+    this._playerBoard = Board.generatePlayerBoard(numberOfRows, numberOfColumns);
+    this._bombBoard = Board.generateBombBoard(numberOfRows, numberOfColumns, numberOfBombs);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
     let board = [];
     
@@ -71,7 +97,7 @@ const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
         return 'This title has already been flipped!';
     }
     else if (bombBoard[rowIndex][columnIndex] === 'B') {
-        playerBoard[rowIndex][columnIndex] = 'B'
+        playerBoard[rowIndex][columnIndex] = 'B';
     }
     else {
         playerBoard[rowIndex][columnIndex] = getNumberOfNeighborBombs(bombBoard, 
@@ -94,7 +120,7 @@ printBoard(bombBoard);
 
 flipTile(playerBoard, bombBoard, 0, 0);
 console.log('Updated Player Board: ');
-
+ 
 printBoard(playerBoard);  
 
 
