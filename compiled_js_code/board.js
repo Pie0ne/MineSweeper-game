@@ -115,4 +115,3 @@ var Board = exports.Board = function () {
     return Board;
 }();
 
-;
