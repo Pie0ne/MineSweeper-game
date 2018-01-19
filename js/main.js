@@ -5,6 +5,23 @@ class Board {
     this._playerBoard = Board.generatePlayerBoard(numberOfRows, numberOfColumns);
     this._bombBoard = Board.generateBombBoard(numberOfRows, numberOfColumns, numberOfBombs);
     }
+    
+    get playerBoard () {
+        return this._playerBoard;
+    }
+    
+    flipTile (rowIndex, columnIndex)  {
+        if (this._playerBoard[rowIndex][columnIndex] !== ' ') {
+            return 'This title has already been flipped!';
+        }
+        else if (this._bombBoard[rowIndex][columnIndex] === 'B') {
+            this._playerBoard[rowIndex][columnIndex] = 'B';
+        }
+        else {
+            this._playerBoard[rowIndex][columnIndex] = this.getNumberOfNeighborBombs(rowIndex, columnIndex);
+        }
+        this._numberOfTitles--;
+    }
 };
 
 
@@ -92,18 +109,7 @@ const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
     return numberOfBombs;
 };
 
-const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
-    if (playerBoard[rowIndex][columnIndex] !== ' ') {
-        return 'This title has already been flipped!';
-    }
-    else if (bombBoard[rowIndex][columnIndex] === 'B') {
-        playerBoard[rowIndex][columnIndex] = 'B';
-    }
-    else {
-        playerBoard[rowIndex][columnIndex] = getNumberOfNeighborBombs(bombBoard, 
-        rowIndex, columnIndex);
-    }
-};
+
 
 const printBoard = board => {
     console.log(board.map(row => row.join(' | ')).join('\n')); 
