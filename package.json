@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Pie0ne/MineSweeper-game#readme",
   "dependencies": {
     "braces": "^3.0.2",
+    "kind-of": "^6.0.3",
     "lodash": "^4.17.14",
     "randomatic": "^3.1.0"
   }
